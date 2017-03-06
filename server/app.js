@@ -69,3 +69,24 @@ app.post('/treats', function(req, res) {
         } // end else
     }); //end pool connect
 }); // end router.post
+
+app.delete('/delete/:id', function(req, res) {
+    var treatId = req.params.id;
+    console.log('id of task to delete: ', treatId);
+    pool.connect(function(err, client, done) {
+        if (err) {
+            console.log('Error connecting to database: ', err);
+            res.sendStatus(500);
+        } else {
+            client.query('DELETE FROM treats WHERE id=$1;', [treatId],
+                function(err, result) {
+                    if (err) {
+                        console.log('Error making the database query: ', err);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(202);
+                    }
+                });
+        }
+    });
+}); // closing delete request

@@ -83,4 +83,32 @@ $(document).ready(function () {
 
     $('.treat:last-of-type').append($treat);
   }
+
+  $('#deleteButton').on('click', function() {
+          console.log('DeleteButton Clicked');
+          var idOfTreatToDelete = $(this).parent().data().id;
+          console.log('The id to delete is: ', idOfTreatToDelete);
+          var result = confirm("Are you sure you want to delete?");
+          if (result) {
+              $.ajax({
+                  type: 'DELETE',
+                  url: '/delete/' + idOfTreatToDelete,
+                  success: function(response) {
+                      console.log(response);
+                  getTreats();
+                  } // end success
+              }); //end ajax
+          } // end if confirm to delete
+      }); //end on click
+
+
+
+
+
+
+
+
+
+
+
 });

@@ -58,3 +58,8 @@ img {
   border-radius: 1em;
   padding: 2rem;
 }
+
+#deleteButton {
+  background-color: red;
+  color: white;
+}
