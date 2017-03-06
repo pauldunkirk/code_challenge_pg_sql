@@ -1,28 +1,21 @@
 $(document).ready(function () {
-
   // get treats on load
   getTreats();
-
   /**---------- Event Handling ----------**/
   /** Save New Treat **/
   $('#saveNewButton').on('click', function(event) {
     event.preventDefault();
-
     var treateName = $('#treatNameInput').val();
     var treatDescription = $('#treatDescriptionInput').val();
     var treateURL = $('#treatUrlInput').val();
-
     var newTreat = {
       name: treateName,
       description: treatDescription,
       url: treateURL
     };
-
     postTreat(newTreat);
   });
-
   /**---------- AJAX Functions ----------**/
-
   // GET /treats
   function getTreats() {
     $.ajax({
@@ -31,7 +24,6 @@ $(document).ready(function () {
     })
     .done(function (treatArray) {
       console.log('GET /treats returned ', treatArray);
-
       $.each(treatArray, function (index, treat) {
         appendTreat(treat);
       });
